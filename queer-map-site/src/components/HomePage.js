@@ -25,6 +25,19 @@ function HomePage() {
         <p>filters</p>
     </div>
     </div>
+    <h2 className = "h2">Events Board</h2>
+    <div className = "grid">
+        <div className = "tile"><b className = "b">Event Name</b><br></br>
+        <img src ="https://th-thumbnailer.cdn-si-edu.com/bgmkh2ypz03IkiRR50I-UMaqUQc=/1000x750/filters:no_upscale():focal(1061x707:1062x708)/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer_public/55/95/55958815-3a8a-4032-ac7a-ff8c8ec8898a/gettyimages-1067956982.jpg" className = "img"/>
+        📍 Location <br></br>
+        📆 Date <br></br>
+        👤 Organizer<br></br><hr className = "hr"></hr>
+         Description</div>
+        <div className = "tile">One</div>
+        <div className = "tile">One</div>
+        <div className = "tile">One</div>
+        <div className = "tile">One</div>
+    </div>
     </div>
   );
 }
