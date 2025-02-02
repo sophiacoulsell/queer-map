@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/WelcomePage.css';
 
 function WelcomePage(){
+    
 
     const navigate = useNavigate();
 
@@ -20,6 +21,7 @@ function WelcomePage(){
                     Here!
                 </Link>
             </p>
+            <div class="rain"></div>
         </div>
 
     );

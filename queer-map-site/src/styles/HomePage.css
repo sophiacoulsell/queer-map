@@ -1,3 +1,6 @@
+
+
+
 .app {
     display: flex;
     flex-direction: row;
@@ -17,8 +20,9 @@
 
   .filter-container{
     height: 500px;
-    width: 30%;
+    width: 25%;
     background-color: #E5D8C7;
+    border-radius: 10px;
   }
 
   .search-bar{
@@ -27,9 +31,20 @@
     background-color: aqua;
     margin-left: 15%;
     margin-top: 20px;
-    padding-left: 2%;
+    padding: 1px;
     border-radius: 9px ;
     background-color: #FFC0CB;
+  }
+
+  .search-input{
+    background: none;
+    border: none;
+    width: 98%;
+    height: 50px;
+  }
+  
+  .filters-h{
+    padding-left: 10px;
   }
 
   .navbar{

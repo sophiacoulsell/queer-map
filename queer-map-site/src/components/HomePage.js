@@ -8,6 +8,7 @@ import "../styles/HomePage.css";
 function HomePage() {
   const allTags = ["Pride", "Music", "Diversity", "Sustainability", "LGBTQ+ Networking", "Eco-Conscious", "Free", "Other"];
   const [selectedTags, setSelectedTags] = useState([]); // Make sure this is initialized as an empty array
+  const [searchQuery, setSearchQuery] = useState("");
 
   const toggleTagSelection = (tag) => {
     setSelectedTags((prevSelectedTags) => {
@@ -21,11 +22,18 @@ function HomePage() {
 
   return (
     <div>
+      <div className="home-page">
       <Navbar className="navbar"></Navbar>
       
       <div className="search-bar">
-        <p>search</p>
-      </div>
+          <input
+            type="text"
+            placeholder="Search for events..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)} // Save input value
+            className="search-input"
+          />
+        </div>
 
       <div className="app">
         <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
@@ -33,6 +41,9 @@ function HomePage() {
         </APIProvider>
 
         <div className="filter-container">
+          <div classname = "filters-h">
+           <p>Event filters: </p>
+          </div>
           <FilterTags
             filterList={allTags} 
             selectedTags={selectedTags} 
@@ -52,6 +63,7 @@ function HomePage() {
         <div className = "tile">One</div>
         <div className = "tile">One</div>
         <div className = "tile">One</div>
+    </div>
     </div>
     </div>
   );
