@@ -43,7 +43,7 @@ function CustomMap() {
   useEffect(() => {
     const fetchMarkers = async () => {
       try {
-        const response = await fetch(`http://localhost:5001/api/places?latitude=${location.lat}&longitude=${location.lng}`, {
+        const response = await fetch(`http://127.0.1:5000/api/places?latitude=${location.lat}&longitude=${location.lng}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
