@@ -37,3 +37,45 @@
   }
 
   
+
+
+
+  .filter-tags-display{
+    position: relative;
+    display: flex;
+    gap: 10px;
+    top: -30px;
+}
+
+.tag-container{
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 5px;
+}
+
+.tag-item{
+    position: relative;
+    border: 1px solid black;
+    display: flex;
+    padding: 5px;
+    border-radius: 10px;
+    top: 10px;
+    height: fit-content;
+    width: fit-content;
+    
+
+}
+
+.delete-button {
+  border: none;
+  background: none;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.available-tags-list{
+  display: flex;
+  gap: 10px;
+  padding-top: 15px;
+}

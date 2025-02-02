@@ -1,0 +1,39 @@
+
+
+.food-tags-display{
+    position: relative;
+    display: flex;
+    gap: 10px;
+    top: -30px;
+}
+
+.tag-container{
+    display: flex;
+    gap: 10px;
+    margin-left: 6%;
+}
+
+.tag-item{
+    position: relative;
+    border: 1px solid black;
+    display: flex;
+    padding: 5px;
+    border-radius: 10px;
+    top: 10px;
+    height: fit-content;
+    box-sizing: border-box;
+
+}
+
+.delete-button {
+  border: none;
+  background-color: white;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.available-tags-list{
+  display: flex;
+  gap: 10px;
+  padding-top: 15px;
+}
