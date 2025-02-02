@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import '../styles/Event.css';
-import AddressAutocomplete from './AddressAutocomplete'; // Import the AddressAutocomplete component
+import AddressAutocomplete from './AddressAutocomplete';
 
 function Event() {
   const [name, setName] = useState("");
@@ -23,10 +23,33 @@ function Event() {
     setOtherTag(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (otherTag) {
       setTags((prevTags) => [...prevTags, otherTag]);
+    }
+
+    const eventData = {
+      name,
+      description: desc,
+      date,
+      location: loc, // Send location data (could be a string or object from AddressAutocomplete)
+      tags,
+      organizer: org
+    };
+
+    try {
+      console.log('Submitting event:', eventData);
+      const response = await fetch('http://127.0.0.1:5000/create_event', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(eventData)
+      });
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error submitting event:', error);
     }
   };
 
@@ -69,8 +92,8 @@ function Event() {
         {/* Address Section with Autocomplete */}
         <label className="form-label">
           Location:
-          <AddressAutocomplete /> {/* Insert the AddressAutocomplete component here */}
-        </label>
+            <AddressAutocomplete setLoc={setLoc} />
+          </label>
 
         <label className="form-label">
           Tags (Select all that apply):
