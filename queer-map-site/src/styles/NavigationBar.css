@@ -14,16 +14,12 @@
     text-decoration: none;
     letter-spacing: 3px; /* Increases the space between characters */
     word-spacing: 10px;
-    position: absolute;
-    margin-bottom: 1rem;
   }
 
   .navbar-left {
     background-color: #424B54;
     padding-left: 1rem;
     padding-right: 1rem;
-    padding-bottom: 1rem;
-    text-align: center;
     
   }
   
