@@ -10,6 +10,14 @@ function HomePage() {
   const [selectedTags, setSelectedTags] = useState([]); // Make sure this is initialized as an empty array
   const [events, setEvents] = useState([]); // State to store events data
 
+  const getPlacePhotoUrl = (photoReference) => {
+    console.log("photoReference", photoReference);
+    const baseUrl = "https://maps.googleapis.com/maps/api/place/photo";
+    const maxWidth = 400; // Adjust the max width as needed
+    const apiKey = 'AIzaSyBT1ESbcowGmDSAir-C5_TkLQxE3aeog1s';
+    return `${baseUrl}?maxwidth=${maxWidth}&photoreference=${photoReference}&key=${apiKey}`;
+  };
+
   // Fetch events from the Flask API
   useEffect(() => {
     const fetchEvents = async () => {
@@ -65,18 +73,26 @@ function HomePage() {
       <h2 className="h2">Events Board</h2>
 
       <div className="grid">
-  {events.length === 0 ? (
-    <p>No events available</p> // Display message if no events are fetched
-  ) : (
-    events.map((event) => (
+      {events.length === 0 ? (
+  <p>No events available</p>
+) : (
+  events.map((event) => {
+    const photoUrl = event.photo_reference 
+      ? getPlacePhotoUrl(event.photo_reference) 
+      : "https://th-thumbnailer.cdn-si-edu.com/bgmkh2ypz03IkiRR50I-UMaqUQc=/1000x750/filters:no_upscale():focal(1061x707:1062x708)/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer_public/55/95/55958815-3a8a-4032-ac7a-ff8c8ec8898a/gettyimages-1067956982.jpg";
+
+    return (
       <div className="tile" key={event._id}>
         <b className="b">{event.name}</b>
         <br />
+        
+        {/* Display event image dynamically */}
         <img 
-          src="https://th-thumbnailer.cdn-si-edu.com/bgmkh2ypz03IkiRR50I-UMaqUQc=/1000x750/filters:no_upscale():focal(1061x707:1062x708)/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer_public/55/95/55958815-3a8a-4032-ac7a-ff8c8ec8898a/gettyimages-1067956982.jpg"
+          src={photoUrl}
           className="img"
           alt={event.name}
         />
+        
         {/* Render location details individually */}
         📍 {event.location ? event.location.address1 : "Unknown location"} <br />
         📆 {event.date} <br />
@@ -84,8 +100,9 @@ function HomePage() {
         <hr className="hr" />
         {event.description}
       </div>
-    ))
-  )}
+    );
+  })
+)}
 </div>
 
     </div>
