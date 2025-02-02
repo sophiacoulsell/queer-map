@@ -1,6 +1,8 @@
 .app {
     display: flex;
+    flex-direction: row;
     padding: 5rem;
+    padding-top: 6rem;
     justify-content: space-evenly;
     font-family: Verdana, Geneva, Tahoma, sans-serif
   }
@@ -8,7 +10,30 @@
   .map-container {
     height: 500px;
     width: 50%;
-    border: 2px solid black;
+    border: 5px solid #79B791;
     border-radius: 20px;
+    overflow: hidden;
   }
+
+  .filter-container{
+    height: 500px;
+    width: 30%;
+    background-color: #E5D8C7;
+  }
+
+  .search-bar{
+    width: 38%;
+    position: absolute;
+    background-color: aqua;
+    margin-left: 15%;
+    margin-top: 20px;
+    padding-left: 2%;
+    border-radius: 9px ;
+    background-color: #FFC0CB;
+  }
+
+  .navbar{
+    position: relative;
+  }
+
   
