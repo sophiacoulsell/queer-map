@@ -7,7 +7,7 @@ import "../styles/HomePage.css";
 function HomePage () {
   return (
     <div className="app">
-      <APIProvider apiKey={process.env.AIzaSyBDlsV5eONJjKPPPiqe3F3tVaiD3WXcdQg}>
+      <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
         <CustomMap />
       </APIProvider>
     </div>
