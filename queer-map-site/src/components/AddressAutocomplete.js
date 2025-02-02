@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 
-const AddressAutocomplete = () => {
+const AddressAutocomplete = ({setLoc}) => {
   let autocomplete;
   let address1Field;
   let postalField;
 
   useEffect(() => {
-    // Dynamically load Google Maps script with your API key from environment variables
+    
     const script = document.createElement('script');
     script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`;
     script.async = true;
@@ -81,6 +81,8 @@ const AddressAutocomplete = () => {
         }
       }
     }
+
+    setLoc(address1.trim());  // Make sure setLoc is called with the final address
 
     address1Field.value = address1;
     postalField.value = postcode;
