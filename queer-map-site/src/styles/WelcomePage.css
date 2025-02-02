@@ -29,3 +29,24 @@ h1 {
     background-color: #5b0cad;
 }
 
+@keyframes rainbow {
+    0% { background-color: #ffadad; }
+    14% { background-color: #ffd6a5; }
+    28% { background-color: #fdffb6; }
+    42% { background-color: #caffbf; }
+    57% { background-color: #ADF8FF; }
+    71% { background-color: #a0c4ff; }
+    85% { background-color: #bdb2ff; }
+    100% { background-color: #ffc6ff; }
+  }
+  
+  .welcome-button {
+    position: relative;
+    z-index: 2;
+    padding: 15px 30px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    animation: rainbow 3s linear infinite;
+  }
