@@ -14,7 +14,7 @@ function App() {
         <div>
           <Routes>
             <Route path="/" element={<WelcomePage />} /> {/* Welcome page route */}
-            <Route path="/home" element={<HomePage />} /> {/* Home page route */}
+            <Route path="/HomePage" element={<HomePage />} /> {/* Home page route */}
             <Route path="/event" element={<Event />} /> {/* Event route */}
           </Routes>
         </div>

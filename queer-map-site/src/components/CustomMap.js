@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { Map, Marker} from "@vis.gl/react-google-maps";
 
 import "../styles/HomePage.css";
 
-function CustomMap () {
-  // shows marker on London by default
-  const [markerLocation, setMarkerLocation] = useState({
+function CustomMap() {
+  const markerLocation = {
     lat: 51.509865,
     lng: -0.118092,
-  });
+  };
 
   return (
     <div className="map-container">
