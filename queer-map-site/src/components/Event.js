@@ -7,7 +7,7 @@ function Event() {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [date, setDate] = useState("");
-  const [loc, setLoc] = useState("");
+  const [loc, onLocationSelected] = useState("");
   const [tags, setTags] = useState([]);
   const [otherTag, setOtherTag] = useState("");
   const [org, setOrg] = useState("Unknown");
@@ -92,7 +92,7 @@ function Event() {
         {/* Address Section with Autocomplete */}
         <label className="form-label">
           Location:
-            <AddressAutocomplete setLoc={setLoc} />
+            <AddressAutocomplete onLocationSelected={onLocationSelected} />
           </label>
 
         <label className="form-label">

@@ -92,7 +92,7 @@ const AddressAutocomplete = ({ onLocationSelected }) => {
       latitude = place.geometry.location.lat();
       longitude = place.geometry.location.lng();
       // Send latitude and longitude to Flask backend
-      fetch(`http://127.0.0.1:5001/api/places?latitude=${latitude}&longitude=${longitude}`)
+      fetch(`http://127.0.0.1:5000/api/places?latitude=${latitude}&longitude=${longitude}`)
       .then(response => response.json())
       .then(data => {
         console.log('Success:', data);

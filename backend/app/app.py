@@ -9,7 +9,7 @@ from db import db
 from pymongo import MongoClient
 
 
-dotenv_path = os.path.join(os.path.dirname(__file__), '..', '..','queer-map-site', '.env')
+dotenv_path = os.path.join(os.path.dirname(__file__),'.env')
 load_dotenv(dotenv_path)  # Load environment variables from .env file
 
 
@@ -36,7 +36,7 @@ def get_places():
     print(f"{lat}, {lng}")
 
     # Make a request to Google Places API
-    response = requests.get(places_url)
+    response = request.get(places_url)
     data = response.json()
     # Extract relevant information from API response
     results = []
@@ -97,5 +97,18 @@ def create_event():
     return jsonify({"message": "Event created", "id": str(inserted_id)}), 201
     print("Event created")
 
+@app.route("/get_events", methods=["GET"])
+@cross_origin()  # Allow React frontend to access
+def get_events():
+    # Query the events collection
+    print("getting events")
+    events = list(events_collection.find())  # Finds all documents in the "events" collection
+
+    # Convert MongoDB ObjectId to string for JSON serialization
+    for event in events:
+        event['_id'] = str(event['_id'])
+
+    return jsonify(events)  # Send data as JSON response
+
 if __name__ == '__main__':
-    app.run(port=5001, debug=True)
+    app.run(port=5000, debug=True)
