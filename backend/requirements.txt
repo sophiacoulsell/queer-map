@@ -1,1 +1,4 @@
 flask
+flask_pymongo
+flask_cors
+dotenv
