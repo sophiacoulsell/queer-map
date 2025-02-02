@@ -172,16 +172,6 @@ function Event() {
           Submit
         </button>
       </form>
-
-      <div className="event-details">
-        <h3>Event Details:</h3>
-        <p><strong>{name}</strong></p>
-        <p>{desc}</p>
-        <p><strong>Date:</strong> {date}</p>
-        <p><strong>Location:</strong> {loc}</p>
-        <p><strong>Tags:</strong> {tags.join(", ")}</p>
-        <p><strong>Organizer:</strong> {org}</p>
-      </div>
     </>
   );
 }
