@@ -25,6 +25,7 @@ mongo = PyMongo(app)
 GOOGLE_PLACES_API_KEY = os.getenv("REACT_APP_GOOGLE_MAPS_API_KEY")
 
 @app.route("/api/places", methods=["GET"])
+@cross_origin()  # Allow React frontend to access
 def get_places():
     lat = request.args.get("latitude", default=34.0522, type=float)  # Default to LA
     lng = request.args.get("longitude", default=-118.2437, type=float)
@@ -111,4 +112,4 @@ def get_events():
     return jsonify(events)  # Send data as JSON response
 
 if __name__ == '__main__':
-    app.run(port=5001, debug=True)
+    app.run(port=5000, debug=True)
