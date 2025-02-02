@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_pymongo import PyMongo
 from flask_cors import CORS, cross_origin
 from dotenv import load_dotenv
+import requests
 import os
 from bson import ObjectId
 from db import db
@@ -32,13 +33,11 @@ def get_places():
 
     # Google Places API URL
     places_url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword={query}&location={lat},{lng}&radius={radius}&key={GOOGLE_PLACES_API_KEY}"
-    print(request.args)
     print(f"{lat}, {lng}")
 
     # Make a request to Google Places API
     response = requests.get(places_url)
     data = response.json()
-    print(data)
     # Extract relevant information from API response
     results = []
     if "results" in data:
