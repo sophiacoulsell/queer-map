@@ -62,6 +62,7 @@ function HomePage() {
         </APIProvider>
 
         <div className="filter-container">
+          <p>Filter by: </p>
           <FilterTags
             filterList={allTags} 
             selectedTags={selectedTags} 

@@ -11,6 +11,7 @@ function Event() {
   const [tags, setTags] = useState([]);
   const [otherTag, setOtherTag] = useState("");
   const [org, setOrg] = useState("Unknown");
+  const [submitStatus, setSubmitStatus] = useState(false);
 
   const handleTagChange = (e) => {
     const { value, checked } = e.target;
@@ -28,6 +29,10 @@ function Event() {
     if (otherTag) {
       setTags((prevTags) => [...prevTags, otherTag]);
     }
+    setSubmitStatus(true); // ✅ Correct way to update state
+
+    // Hide success message after 3 seconds
+    setTimeout(() => setSubmitStatus(false), 3000);
 
     const eventData = {
       name,
@@ -48,6 +53,8 @@ function Event() {
 
       const data = await response.json();
       console.log(data);
+      setSubmitStatus(true);
+      setTimeout(() => setSubmitStatus(false), 3000);
     } catch (error) {
       console.error('Error submitting event:', error);
     }
@@ -195,6 +202,9 @@ function Event() {
           Submit
         </button>
       </form>
+      <div className='success-message'>
+       {submitStatus && <p>Event created ✅</p>}  
+      </div>
     </>
   );
 }

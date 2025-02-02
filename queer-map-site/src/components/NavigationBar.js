@@ -12,19 +12,7 @@ function Navbar() {
             <div className="navbar-center">
                 <ul className="nav-links">
                     <li>
-                        <p>1</p>
-                    </li>
-                    <li>
-                       <p>2</p>
-                    </li>
-                    <li>
-                        <p>3</p>
-                    </li>
-                    <li>
-                        <p>4</p>
-                    </li>
-                    <li>
-                        <p>5</p>
+                        <a href="/event"><p className='logo'> create an event</p></a>
                     </li>
                 </ul>
             </div>
