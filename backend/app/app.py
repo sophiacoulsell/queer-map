@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from flask_pymongo import PyMongo
 from flask_cors import CORS
 from dotenv import load_dotenv
+from config import EVENTBRITE_TOKEN
 import requests
 import os
 
@@ -15,7 +16,6 @@ app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 mongo = PyMongo(app)
 
 def get_events(latitude, longitude, radius=10):
-    EVENTBRITE_TOKEN=os.getenv("EVENTBRITE_TOKEN")
     url = "https://www.eventbriteapi.com/v3/events/search/"
     headers = {"Authorization": f"Bearer {EVENTBRITE_TOKEN}"}
 
@@ -26,7 +26,18 @@ def get_events(latitude, longitude, radius=10):
         "location.within": f"{radius}mi"
     }
     response = requests.get(url, headers=headers, params=params)
-    return response.json()
+    if response.status_code == 200:
+        return response.json().get('events', [])
+    else:
+        response.raise_for_status()
+
+@app.route('/api/events')
+def events():
+    latitude = None
+    longitude = None
+    radius = None
+    events = get_events(latitude, longitude, radius)
+    return Flask.jsonify(events)
     
 @app.route('/')
 def index():
@@ -35,14 +46,14 @@ def index():
 #example route
 @app.route('/add_data', methods=['POST'])
 def add_data():
-    data = request.json  # Get the JSON data from the POST request
+    data = Flask.request.json  # Get the JSON data from the POST request
     # Access the 'my_collection' collection in your MongoDB database
     collection = mongo.db.my_collection
     
     # Insert data into the MongoDB collection
     result = collection.insert_one(data)
     
-    return jsonify(message="Data added", id=str(result.inserted_id)), 201
+    return Flask.jsonify(message="Data added", id=str(result.inserted_id)), 201
 
 @app.route('/get_data', methods=['GET'])
 def get_data():
