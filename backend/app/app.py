@@ -15,10 +15,15 @@ CORS(app)
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 mongo = PyMongo(app)
 
-def get_events(latitude, longitude, radius=10):
-    url = "https://www.eventbriteapi.com/v3/events/search/"
-    headers = {"Authorization": f"Bearer {EVENTBRITE_TOKEN}"}
+url = "https://www.eventbriteapi.com/v3/events/search/"
+headers = {"Authorization": f"Bearer {EVENTBRITE_TOKEN}"}
 
+@app.route('/get_events', methods=['GET'])
+def events():
+    # Fetch longtitude, latitude and radius from the query parameters
+    latitude = 34.068741
+    longitude = 118.444879
+    radius = 10
     params = {
         "q": "lgbtq",
         "location.latitude": latitude,
@@ -30,14 +35,6 @@ def get_events(latitude, longitude, radius=10):
         return response.json().get('events', [])
     else:
         response.raise_for_status()
-
-@app.route('/api/get-events', methods=['GET'])
-def events():
-    latitude = Flask.request.args.get('latitude')
-    longitude = Flask.request.args.get('longitude')
-    radius = Flask.request.args.get('radius', default=10, type=int)
-    events = get_events(latitude, longitude, radius)
-    return Flask.jsonify(events)
 
 @app.route('/')
 def index():
