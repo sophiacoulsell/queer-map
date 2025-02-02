@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from flask_pymongo import PyMongo
 from flask_cors import CORS
 from dotenv import load_dotenv
+import requests
 import os
 
 load_dotenv()  # Load environment variables from .env file
@@ -13,7 +14,20 @@ CORS(app)
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 mongo = PyMongo(app)
 
+def get_events(latitude, longitude, radius=10):
+    EVENTBRITE_TOKEN=os.getenv("EVENTBRITE_TOKEN")
+    url = "https://www.eventbriteapi.com/v3/events/search/"
+    headers = {"Authorization": f"Bearer {EVENTBRITE_TOKEN}"}
 
+    params = {
+        "q": "lgbtq",
+        "location.latitude": latitude,
+        "location.longitude": longitude,
+        "location.within": f"{radius}mi"
+    }
+    response = requests.get(url, headers=headers, params=params)
+    return response.json()
+    
 @app.route('/')
 def index():
     return render_template('index.html')
