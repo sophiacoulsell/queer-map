@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify, request
 from flask_pymongo import PyMongo
 from flask_cors import CORS, cross_origin
 from dotenv import load_dotenv
@@ -36,7 +36,7 @@ def get_places():
     print(f"{lat}, {lng}")
 
     # Make a request to Google Places API
-    response = request.get(places_url)
+    response = requests.get(places_url)
     data = response.json()
     # Extract relevant information from API response
     results = []
@@ -111,4 +111,4 @@ def get_events():
     return jsonify(events)  # Send data as JSON response
 
 if __name__ == '__main__':
-    app.run(port=5000, debug=True)
+    app.run(port=5001, debug=True)
