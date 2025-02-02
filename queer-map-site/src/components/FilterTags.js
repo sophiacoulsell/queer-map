@@ -23,9 +23,9 @@ function FilterTags({ filterList, selectedTags, onTagSelect }) {
         <div
           className="tag-item"
           key={index}
-          onClick={() => onTagSelect(str)} // Trigger the parent function
+          onClick={() => onTagSelect(str)} 
           style={{
-            border: selectedTags && selectedTags.includes(str) ? '2px solid black' : 'none', // Ensure selectedTags is defined before calling includes
+            border: selectedTags && selectedTags.includes(str) ? '2px solid black' : 'none', 
             backgroundColor: rainbowColors[index % rainbowColors.length],
             color: "black",
             cursor: "pointer",

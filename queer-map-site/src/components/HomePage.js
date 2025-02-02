@@ -27,7 +27,6 @@ function HomePage() {
         <p>search</p>
       </div>
 
-<<<<<<< HEAD
       <div className="app">
         <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
           <CustomMap />
@@ -35,18 +34,13 @@ function HomePage() {
 
         <div className="filter-container">
           <FilterTags
-            filterList={allTags} // Pass the list of all tags
-            selectedTags={selectedTags} // Pass the selectedTags state
-            onTagSelect={toggleTagSelection} // Pass the function to toggle tags
+            filterList={allTags} 
+            selectedTags={selectedTags} 
+            onTagSelect={toggleTagSelection}
           />
         </div>
       </div>
-=======
-      <div className="filter-container">
-        <p>filters</p>
-    </div>
-    </div>
-    <h2 className = "h2">Events Board</h2>
+      <h2 className = "h2">Events Board</h2>
     <div className = "grid">
         <div className = "tile"><b className = "b">Event Name</b><br></br>
         <img src ="https://th-thumbnailer.cdn-si-edu.com/bgmkh2ypz03IkiRR50I-UMaqUQc=/1000x750/filters:no_upscale():focal(1061x707:1062x708)/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer_public/55/95/55958815-3a8a-4032-ac7a-ff8c8ec8898a/gettyimages-1067956982.jpg" className = "img"/>
@@ -59,7 +53,6 @@ function HomePage() {
         <div className = "tile">One</div>
         <div className = "tile">One</div>
     </div>
->>>>>>> 16702b4e4c30eb769c24c5cbc9bb50795b74a33c
     </div>
   );
 }
