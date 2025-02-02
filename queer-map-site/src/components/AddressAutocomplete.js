@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-const AddressAutocomplete = () => {
+const AddressAutocomplete = ({ onLocationSelected }) => {
   let autocomplete;
   let address1Field;
   let postalField;
@@ -39,7 +39,11 @@ const AddressAutocomplete = () => {
       fields: ["address_components", "geometry"],
       types: ["address"],
     });
-    address1Field.focus();
+    if (address1Field) {
+      address1Field.focus();
+    } else {
+      console.warn('Address input field not found.');
+    }
     // When the user selects an address from the drop-down, populate the
     // address fields in the form.
     autocomplete.addListener("place_changed", fillInAddress);
@@ -50,6 +54,8 @@ const AddressAutocomplete = () => {
     const place = autocomplete.getPlace();
     let address1 = "";
     let postcode = "";
+    let latitude = "";
+    let longitude = "";
 
     if (!place.address_components) {
       console.error('No address components available for the selected place.');
@@ -82,8 +88,26 @@ const AddressAutocomplete = () => {
       }
     }
 
+    if (place.geometry) {
+      latitude = place.geometry.location.lat();
+      longitude = place.geometry.location.lng();
+      // Send latitude and longitude to Flask backend
+      fetch(`http://127.0.0.1:5001/api/places?latitude=${latitude}&longitude=${longitude}`)
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    }
+  
     address1Field.value = address1;
     postalField.value = postcode;
+
+    if (onLocationSelected) {
+      onLocationSelected({ address1, postcode, latitude, longitude });
+    }
   }
 
   return (
