@@ -14,12 +14,6 @@ function WelcomePage(){
             <button className="welcome-button" onClick={() => navigate('/HomePage')}>
                 Enter Home
             </button>
-            <p>
-            Open Event {' '}
-                <Link to="/Event">
-                    Here!
-                </Link>
-            </p>
         </div>
 
     );
