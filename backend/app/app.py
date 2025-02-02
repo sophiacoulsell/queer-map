@@ -31,14 +31,14 @@ def get_events(latitude, longitude, radius=10):
     else:
         response.raise_for_status()
 
-@app.route('/api/events')
+@app.route('/api/get-events', methods=['GET'])
 def events():
-    latitude = None
-    longitude = None
-    radius = None
+    latitude = Flask.request.args.get('latitude')
+    longitude = Flask.request.args.get('longitude')
+    radius = Flask.request.args.get('radius', default=10, type=int)
     events = get_events(latitude, longitude, radius)
     return Flask.jsonify(events)
-    
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -64,7 +64,7 @@ def get_data():
     for item in data:
         item['_id'] = str(item['_id'])  # Convert ObjectId to string
         result.append(item)
-    return jsonify(result)
+    return Flask.jsonify(result)
 
 if __name__ == '__main__':
     app.run(debug=True)
